@@ -3,20 +3,30 @@
     <div class="title">
           <h1>Covid tracker Vue.js</h1>
     </div>
+    <div class="cards">
+      <Confirmed />
+      <Recovered />
+      <Dead />
+    </div>
   </div>
 </template>
 
 <script>
+import Confirmed from './components/Confirmed';
+import Dead from './components/Dead';
+import Recovered from './components/Recovered';
 
 export default {
   name: 'App',
   components: {
-    
+    Confirmed,
+    Dead,
+    Recovered,
   }
 }
 </script>
 
-<style lang="scss" scoped> 
+<style lang="scss"> 
   #app {
     height: 100vh;
     background-color: rgb(255, 255, 180);
