@@ -1,7 +1,7 @@
 <template>
     <div id="covid-recovered">
-        <div class="covid-card">
-            <div id="recovered-overlay"></div>
+        <div class="covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
+            <div id="recovered-overlay" class="animate__animated " v-show="showThat"></div>
             <div class="covid-card-header">
                 <p>Recovered</p>
             </div>
@@ -21,6 +21,7 @@ export default {
         return{
             covid: '',
             date: '',
+            showThat: true,
         }
     },
 
@@ -28,6 +29,30 @@ export default {
         addCommasToNumber() {
             return this.covid.toLocaleString();
         },
+
+        mouseEnter() {
+            if(document.getElementById("recovered-overlay").classList.contains("animate__fadeIn"))
+            {
+                document.getElementById("recovered-overlay").classList.remove("animate__fadeIn");
+                document.getElementById("recovered-overlay").classList.add("animate__fadeOut");
+            }
+            else 
+            {
+                document.getElementById("recovered-overlay").classList.add("animate__fadeOut");
+            }
+            setTimeout(function(){
+                this.showThis = false;
+            }, 750);
+        },
+
+        mouseLeave() {
+            if(document.getElementById("recovered-overlay").classList.contains("animate__fadeOut"))
+            {
+                document.getElementById("recovered-overlay").classList.remove("animate__fadeOut");
+                document.getElementById("recovered-overlay").classList.add("animate__fadeIn");
+            }
+            this.showThis = true;
+        }
     },
 
     mounted() {
