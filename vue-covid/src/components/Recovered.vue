@@ -42,13 +42,17 @@ export default {
 </script>
 
 <style lang="scss">
+    #covid-recovered {
+        margin: auto;
+    }
+
     #covid-recovered .covid-card {
         max-width: 275px;
         height: 300px;
         background-color: white;
         text-align: center;
         border-radius: 20px;
-        box-shadow: 0px 0px 20px 0px rgb(0, 181, 15);
+        box-shadow: 0px 0px 35px 0px rgb(0, 181, 15);
     }
 
     #covid-recovered .covid-card-header {

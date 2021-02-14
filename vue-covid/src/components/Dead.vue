@@ -1,6 +1,7 @@
 <template>
     <div id="covid-dead">
-        <div class="covid-card">
+        <div class="covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
+            <div id="overlay" class="animate__animated " v-show="showThis"></div>
             <div class="covid-card-header">
                 <p>Dead</p>
             </div>
@@ -20,12 +21,33 @@ export default {
         return{
             covid: '',
             date: '',
+            showThis: false,
         }
     },
 
     methods: {
         addCommasToNumber() {
             return this.covid.toLocaleString();
+        },
+
+        mouseEnter() {
+            if(document.getElementById("overlay").classList.contains("animate__fadeOut"))
+            {
+                document.getElementById("overlay").classList.remove("animate__fadeOut");
+                document.getElementById("overlay").classList.add("animate__fadeIn");
+            }
+            else 
+            {
+                document.getElementById("overlay").classList.add("animate__fadeIn");
+            }
+            this.showThis = true;
+        },
+
+        mouseLeave() {
+            document.getElementById("overlay").classList.add("animate__fadeOut");
+            setTimeout(function(){
+                this.showThis = false;
+            }, 750);
         }
     },
 
@@ -42,13 +64,27 @@ export default {
 </script>
 
 <style lang="scss">
+    #covid-dead {
+        margin: auto;
+    }
+
+    #covid-dead #overlay {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(255, 0, 0, 0.201);
+        z-index: 9999;
+        border-radius: 20px;
+        position: absolute;
+    }
+
     #covid-dead .covid-card {
+        position: relative;
         max-width: 275px;
         height: 300px;
         background-color: white;
         text-align: center;
         border-radius: 20px;
-        box-shadow: 0px 0px 20px 0px rgb(181, 0, 0);
+        box-shadow: 0px 0px 35px 0px rgb(181, 0, 0);
     }
 
     #covid-dead .covid-card-header {
@@ -73,4 +109,5 @@ export default {
     #covid-dead .covid-card-body p {
         margin-bottom: 0;
     }
+
 </style>

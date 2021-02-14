@@ -42,13 +42,17 @@ export default {
 </script>
 
 <style lang="scss">
+    #covid-confirmed {
+        margin: auto;
+    }
+
     #covid-confirmed .covid-card {
         max-width: 275px;
         height: 300px;
         background-color: white;
         text-align: center;
         border-radius: 20px;
-        box-shadow: 0px 0px 20px 0px rgba(4, 33, 252, 0.63);
+        box-shadow: 0px 0px 35px 0px rgba(13, 23, 96, 0.63);
     }
 
     #covid-confirmed .covid-card-header {

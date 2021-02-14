@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="title">
-          <h1>Covid tracker Vue.js</h1>
+          <h1>Covid Tracker Vue.js</h1>
     </div>
     <div class="cards">
       <Confirmed />
@@ -38,7 +38,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(105, 230, 252, 0.194);
   }
 
   .cards {
