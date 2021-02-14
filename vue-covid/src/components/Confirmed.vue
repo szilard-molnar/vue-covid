@@ -2,8 +2,11 @@
     <div id="covid-confirmed">
         <div class="covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
             <div id="confirmed-overlay" class="animate__animated "></div>
-            <div class="covid-card-header">
+            <div class="covid-card-header" v-if="selected == null">
                 <p>Confirmed</p>
+            </div>
+            <div class="covid-card-header" v-else :selected="selected">
+                <p>{{selected}}</p>
             </div>
             <div class="covid-card-body">
                 <p>Number of Confirmed:<br>
@@ -12,7 +15,6 @@
                             :delay="delay"
                             :endVal="this.covid"
                             :options="options"
-                            @ready="onReady"
                         />
                     </strong>
                 </p>
@@ -86,7 +88,11 @@ export default {
                 this.date = response.data.lastUpdate;
             })
             .catch(error => console.log(error));
-    }
+    },
+
+    props: [
+        'selected'
+    ]
 }
 </script>
 

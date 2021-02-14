@@ -5,11 +5,9 @@
             <div class="covid-card-header" v-if="selected == null">
                 <p>Dead</p>
             </div>
-            <div class="covid-card-header" v-else>
-                <p>Dead in {{selected}}</p>
+            <div class="covid-card-header" v-else :selected="selected">
+                <p>{{selected}}</p>
             </div>
-
-            <p>test {{selected}}</p>
             
             <div class="covid-card-body">
                 <p>Number of Dead:<br>
@@ -18,7 +16,6 @@
                             :delay="delay"
                             :endVal="this.covid"
                             :options="options"
-                            @ready="onReady"
                             />
                     </strong>
                 </p>

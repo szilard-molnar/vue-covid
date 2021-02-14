@@ -4,9 +4,9 @@
           <h1>Covid Tracker Vue.js</h1>
     </div>
     <div class="cards animate__animated ">
-      <Confirmed />
-      <Recovered />
-      <Dead />
+      <Confirmed :selected="selected"/>
+      <Recovered :selected="selected"/>
+      <Dead :selected="selected"/>
     </div>
     <div class="dropdown animate__animated">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
@@ -16,7 +16,7 @@
                 </b-form-select-option>
             </template>
 
-            <b-form-select-option v-for="(country, i) in countries" :key="i" :selected="selected">{{country.name}}</b-form-select-option>
+            <b-form-select-option v-for="(country, i) in countries" :key="i" :value="country.name">{{country.name}}</b-form-select-option>
         </b-form-select>
     </div>
   </div>
