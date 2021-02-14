@@ -3,10 +3,18 @@
     <div class="title">
           <h1>Covid Tracker Vue.js</h1>
     </div>
+
+    <div class="selected-country" v-if="selected == null">
+      <p>Globally</p>
+    </div>
+    <div class="selected-country" v-else>
+      <p>{{selected}}</p>
+    </div>
+
     <div class="cards animate__animated ">
-      <Confirmed :selected="selected"/>
-      <Recovered :selected="selected"/>
-      <Dead :selected="selected"/>
+      <Confirmed />
+      <Recovered />
+      <Dead />
     </div>
     <div class="dropdown animate__animated">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
@@ -84,13 +92,27 @@ export default {
     column-gap: 20px;
     width: 90%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 35px;
   }
 
   .dropdown {
     margin: auto;
-    margin-top: 75px;
+    margin-top: 50px;
     max-width: 500px;
+  }
+
+  .selected-country {
+    margin-top: 25px;
+  }
+
+  .selected-country p {
+    margin-bottom: 0;
+    font-size: 32px;
+    font-weight: 700;
+    border-bottom: 2px solid black;
+    text-align: center;
+    max-width: fit-content;
+    margin: auto;
   }
 
 </style>

@@ -2,11 +2,8 @@
     <div id="covid-recovered">
         <div class="covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
             <div id="recovered-overlay" class="animate__animated " v-show="showThat"></div>
-            <div class="covid-card-header" v-if="selected == null">
+            <div class="covid-card-header">
                 <p>Recovered</p>
-            </div>
-            <div class="covid-card-header" v-else :selected="selected">
-                <p>{{selected}}</p>
             </div>
             <div class="covid-card-body">
                 <p>Number of Recovered:<br>
@@ -35,7 +32,7 @@ export default {
 
     data() {
         return{
-            covid: '',
+            covid: 0,
             date: '',
             showThat: true,
 
@@ -87,10 +84,6 @@ export default {
             })
             .catch(error => console.log(error));
     },
-
-    props: [
-        'selected'
-    ]
 }
 </script>
 
