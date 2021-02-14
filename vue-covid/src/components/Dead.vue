@@ -1,7 +1,7 @@
 <template>
     <div id="covid-dead">
-        <div class="covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
-            <div id="overlay" class="animate__animated " v-show="showThis"></div>
+        <div class="dead-covid-card" @mouseenter="mouseEnter()" @mouseleave="mouseLeave()">
+            <div id="dead-overlay" class="animate__animated " v-show="showThis"></div>
             <div class="covid-card-header">
                 <p>Dead</p>
             </div>
@@ -21,7 +21,7 @@ export default {
         return{
             covid: '',
             date: '',
-            showThis: false,
+            showThis: true,
         }
     },
 
@@ -31,23 +31,28 @@ export default {
         },
 
         mouseEnter() {
-            if(document.getElementById("overlay").classList.contains("animate__fadeOut"))
+            if(document.getElementById("dead-overlay").classList.contains("animate__fadeIn"))
             {
-                document.getElementById("overlay").classList.remove("animate__fadeOut");
-                document.getElementById("overlay").classList.add("animate__fadeIn");
+                document.getElementById("dead-overlay").classList.remove("animate__fadeIn");
+                document.getElementById("dead-overlay").classList.add("animate__fadeOut");
             }
             else 
             {
-                document.getElementById("overlay").classList.add("animate__fadeIn");
+                document.getElementById("dead-overlay").classList.add("animate__fadeOut");
             }
-            this.showThis = true;
-        },
-
-        mouseLeave() {
-            document.getElementById("overlay").classList.add("animate__fadeOut");
             setTimeout(function(){
                 this.showThis = false;
             }, 750);
+        },
+
+        mouseLeave() {
+            if(document.getElementById("dead-overlay").classList.contains("animate__fadeOut"))
+            {
+                document.getElementById("dead-overlay").classList.remove("animate__fadeOut");
+                document.getElementById("dead-overlay").classList.add("animate__fadeIn");
+            }
+            this.showThis = true;
+
         }
     },
 
@@ -68,7 +73,7 @@ export default {
         margin: auto;
     }
 
-    #covid-dead #overlay {
+    #covid-dead #dead-overlay {
         height: 100%;
         width: 100%;
         background-color: rgba(255, 0, 0, 0.201);
@@ -77,7 +82,7 @@ export default {
         position: absolute;
     }
 
-    #covid-dead .covid-card {
+    #covid-dead .dead-covid-card {
         position: relative;
         max-width: 275px;
         height: 300px;

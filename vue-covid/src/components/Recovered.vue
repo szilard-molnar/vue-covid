@@ -1,6 +1,7 @@
 <template>
     <div id="covid-recovered">
         <div class="covid-card">
+            <div id="recovered-overlay"></div>
             <div class="covid-card-header">
                 <p>Recovered</p>
             </div>
@@ -26,7 +27,7 @@ export default {
     methods: {
         addCommasToNumber() {
             return this.covid.toLocaleString();
-        }
+        },
     },
 
     mounted() {
@@ -46,7 +47,17 @@ export default {
         margin: auto;
     }
 
+    #covid-recovered #recovered-overlay {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(49, 198, 0, 0.201);
+        z-index: 9999;
+        border-radius: 20px;
+        position: absolute;
+    }
+
     #covid-recovered .covid-card {
+        position: relative;
         max-width: 275px;
         height: 300px;
         background-color: white;

@@ -3,7 +3,7 @@
     <div class="title">
           <h1>Covid Tracker Vue.js</h1>
     </div>
-    <div class="cards">
+    <div class="cards animate__animated ">
       <Confirmed />
       <Recovered />
       <Dead />
@@ -22,6 +22,10 @@ export default {
     Confirmed,
     Dead,
     Recovered,
+  },
+
+  mounted() {
+    document.querySelector(".cards").classList.add("animate__zoomIn");
   }
 }
 </script>
