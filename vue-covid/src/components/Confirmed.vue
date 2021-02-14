@@ -5,8 +5,8 @@
                 <p>Confirmed</p>
             </div>
             <div class="covid-card-body">
-                <p>Confirmed number:<br>{{addCommasToNumber()}}</p>
-                <p>As of<br>{{date | moment("dddd, MMMM Do YYYY")}}</p>
+                <p>Number of Confirmed:<br><strong>{{addCommasToNumber()}}</strong></p>
+                <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
             </div>
         </div>
     </div>
@@ -61,5 +61,16 @@ export default {
         margin-bottom: 0;
         font-size: 28px;
         font-weight: 700;
+    }
+
+    #covid-confirmed .covid-card-body {
+        padding: 10px 20px;
+        display: grid;
+        align-items: center;
+        height: 200px;
+    }
+
+    #covid-confirmed .covid-card-body p {
+        margin-bottom: 0;
     }
 </style>
