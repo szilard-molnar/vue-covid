@@ -5,9 +5,8 @@
                 <p>Confirmed</p>
             </div>
             <div class="covid-card-body">
-                <p>Confirmed number</p>
-                <p>{{covid}}</p>
-                <!-- <p>As of {{info.data.lastUpdate}}</p> -->
+                <p>Confirmed number: {{covid}}</p>
+                <p>As of {{date}}</p>
             </div>
         </div>
     </div>
@@ -20,6 +19,7 @@ export default {
     data() {
         return{
             covid: '',
+            date: '',
         }
     },
 
@@ -30,7 +30,11 @@ export default {
     mounted() {
         axios
             .get('https://covid19.mathdro.id/api')
-            .then(response => (this.covid = response))
+            .then(response => {
+                this.covid = response.data.confirmed.value;
+                this.date = response.data.lastUpdate;
+            })
+            .catch(error => console.log(error))
     }
 }
 </script>
