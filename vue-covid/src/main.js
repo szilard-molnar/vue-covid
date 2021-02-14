@@ -11,6 +11,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueAxios, axios)
 
+Vue.use(require('vue-moment'));
+
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

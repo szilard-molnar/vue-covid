@@ -5,8 +5,8 @@
                 <p>Confirmed</p>
             </div>
             <div class="covid-card-body">
-                <p>Confirmed number: {{covid}}</p>
-                <p>As of {{date}}</p>
+                <p>Confirmed number:<br>{{addCommasToNumber()}}</p>
+                <p>As of<br>{{date | moment("dddd, MMMM Do YYYY")}}</p>
             </div>
         </div>
     </div>
@@ -24,7 +24,9 @@ export default {
     },
 
     methods: {
-
+        addCommasToNumber() {
+            return this.covid.toLocaleString();
+        }
     },
 
     mounted() {
@@ -34,15 +36,30 @@ export default {
                 this.covid = response.data.confirmed.value;
                 this.date = response.data.lastUpdate;
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 }
 </script>
 
 <style lang="scss">
-    .covid-card {
-        max-width: 300px;
+    #covid-confirmed .covid-card {
+        max-width: 275px;
+        height: 300px;
         background-color: white;
-        text-align: center
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px 0px rgba(4, 33, 252, 0.63);
+    }
+
+    #covid-confirmed .covid-card-header {
+        padding: 25px 20px;
+        background-color: rgba(4, 33, 252, 0.345);
+        border-radius: 20px 20px 0 0;
+    }
+
+    #covid-confirmed .covid-card-header p {
+        margin-bottom: 0;
+        font-size: 28px;
+        font-weight: 700;
     }
 </style>

@@ -40,4 +40,13 @@ export default {
     justify-content: center;
     background-color: rgba(105, 230, 252, 0.194);
   }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+  }
 </style>
