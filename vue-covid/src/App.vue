@@ -4,10 +4,10 @@
           <h3>Covid Tracker Vue.js</h3>
     </div>
 
-    <div class="selected-country" v-if="selected == null">
+    <div class="selected-country animate__animated " v-if="selected == null">
       <p>Globally</p>
     </div>
-    <div class="selected-country" v-else>
+    <div class="selected-country animate__animated " v-else>
       <p>{{selected}}</p>
     </div>
 
@@ -16,7 +16,7 @@
       <Recovered />
       <Dead />
     </div>
-    <div class="dropdown animate__animated">
+    <div class="dropdown animate__animated ">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
             <template #first>
                 <b-form-select-option :value="null" disabled>
@@ -54,6 +54,8 @@ export default {
 
   mounted() {
     document.querySelector(".cards").classList.add("animate__zoomIn");
+    document.querySelector(".dropdown").classList.add("animate__fadeInUp");
+    document.querySelector(".selected-country").classList.add("animate__fadeInDown");
 
     this.countryRequest();
   },
