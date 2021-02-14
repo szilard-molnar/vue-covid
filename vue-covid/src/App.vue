@@ -8,6 +8,9 @@
       <Recovered />
       <Dead />
     </div>
+    <div class="dropdown animate__animated">
+      <DropDown />
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@
 import Confirmed from './components/Confirmed';
 import Dead from './components/Dead';
 import Recovered from './components/Recovered';
+import DropDown from './components/DropDown';
 
 export default {
   name: 'App',
@@ -22,11 +26,12 @@ export default {
     Confirmed,
     Dead,
     Recovered,
+    DropDown,
   },
 
   mounted() {
     document.querySelector(".cards").classList.add("animate__zoomIn");
-  }
+  },
 }
 </script>
 
@@ -52,4 +57,11 @@ export default {
     margin: auto;
     margin-top: 50px;
   }
+
+  .dropdown {
+    margin: auto;
+    margin-top: 75px;
+    max-width: 500px;
+  }
+
 </style>
