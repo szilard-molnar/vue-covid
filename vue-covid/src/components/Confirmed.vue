@@ -6,7 +6,16 @@
                 <p>Confirmed</p>
             </div>
             <div class="covid-card-body">
-                <p>Number of Confirmed:<br><strong>{{addCommasToNumber()}}</strong></p>
+                <p>Number of Confirmed:<br>
+                    <strong>
+                        <ICountUp
+                            :delay="delay"
+                            :endVal="this.covid"
+                            :options="options"
+                            @ready="onReady"
+                        />
+                    </strong>
+                </p>
                 <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
             </div>
         </div>
@@ -15,12 +24,27 @@
 
 <script>
 import axios from 'axios';
+import ICountUp from 'vue-countup-v2';
 
 export default {
+    components: {
+        ICountUp,
+    },
+
     data() {
         return{
             covid: '',
             date: '',
+
+            delay: 0,
+            options: {
+                useEasing: true,
+                useGrouping: true,
+                separator: ',',
+                decimal: ',',
+                prefix: '',
+                suffix: '',
+            }
         }
     },
 
