@@ -1,6 +1,14 @@
 <template>
     <div id="dropdown">
-        
+        <b-form-select v-model="selected">
+            <template #first>
+                <b-form-select-option :value="null" disabled>
+                    -- Please select an option --
+                </b-form-select-option>
+            </template>
+
+            <b-form-select-option v-for="(country, i) in countries" :key="i">{{country.name}}</b-form-select-option>
+        </b-form-select>
     </div>
 </template>
 
@@ -11,6 +19,7 @@ export default {
     data() {
         return {
             countries: '',
+            selected: null,
         }
     },
 
