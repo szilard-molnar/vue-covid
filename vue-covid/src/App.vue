@@ -14,6 +14,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped> 
+  #app {
+    height: 100vh;
+    background-color: rgb(255, 255, 180);
+  }
 </style>
