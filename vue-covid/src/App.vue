@@ -9,7 +9,15 @@
       <Dead />
     </div>
     <div class="dropdown animate__animated">
-      <DropDown />
+      <b-form-select v-model="selected" v-on:change="changeCountry()">
+            <template #first>
+                <b-form-select-option :value="null" disabled>
+                    -- Please select a country --
+                </b-form-select-option>
+            </template>
+
+            <b-form-select-option v-for="(country, i) in countries" :key="i" :selected="selected">{{country.name}}</b-form-select-option>
+        </b-form-select>
     </div>
   </div>
 </template>
@@ -18,7 +26,8 @@
 import Confirmed from './components/Confirmed';
 import Dead from './components/Dead';
 import Recovered from './components/Recovered';
-import DropDown from './components/DropDown';
+
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -26,12 +35,32 @@ export default {
     Confirmed,
     Dead,
     Recovered,
-    DropDown,
+  },
+
+  data() {
+    return {
+      countries: '',
+      selected: null,
+    }
   },
 
   mounted() {
     document.querySelector(".cards").classList.add("animate__zoomIn");
+
+    this.countryRequest();
   },
+
+  methods: {
+    countryRequest() {
+            axios
+                .get('https://covid19.mathdro.id/api/countries')
+                .then(response => this.countries = response.data.countries);
+    },
+
+    changeCountry() {
+        this.selected = event.target.value;
+    },
+  }
 }
 </script>
 
