@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="title">
-          <h1>Covid Tracker Vue.js</h1>
+          <h3>Covid Tracker Vue.js</h3>
     </div>
 
     <div class="selected-country" v-if="selected == null">
@@ -79,7 +79,7 @@ export default {
   }
 
   .title {
-    height: 100px;
+    height: 75px;
     border-bottom: 2px solid rgba(0, 60, 255, 0.612);
     display: flex;
     align-items: center;
