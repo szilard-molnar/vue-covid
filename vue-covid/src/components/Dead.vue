@@ -5,7 +5,7 @@
             <div class="covid-card-header">
                 <p>Dead</p>
             </div>
-            <div class="covid-card-body">
+            <div class="covid-card-body" v-if="selected == null">
                 <p>Number of Dead:<br>
                     <strong>
                         <ICountUp
@@ -17,6 +17,20 @@
                 </p>
                 <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
             </div>
+
+            <div class="covid-card-body" v-else-if="selected != null">
+                <p>Number of Dead:<br>
+                    <strong>
+                        <ICountUp
+                            :delay="delay"
+                            :endVal="this.countryCovid"
+                            :options="options"
+                            />
+                    </strong>
+                </p>
+                <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
+            </div>
+
         </div>
     </div>
 </template>
@@ -33,6 +47,7 @@ export default {
     data() {
         return{
             covid: 0,
+            countryCovid: 0,
             date: '',
             showThis: true,
 
@@ -73,18 +88,33 @@ export default {
             }
             this.showThis = true;
 
-        }
+        },
     },
 
     mounted() {
-        axios
+        if(this.selected == null)
+        {
+            axios
             .get('https://covid19.mathdro.id/api')
             .then(response => {
                 this.covid = response.data.deaths.value;
                 this.date = response.data.lastUpdate;
-            })
-            .catch(error => console.log(error));
+            });
+        }
+
+        else 
+        {
+            axios
+            .get('https://covid19.mathdro.id/api/countries/Hungary')
+            .then((response => {
+                this.countryCovid = response.data.deaths.value
+            }));
+        }
     },
+
+    props: [
+        'selected',
+    ]
 }
 </script>
 

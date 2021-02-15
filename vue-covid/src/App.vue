@@ -14,7 +14,7 @@
     <div class="cards animate__animated ">
       <Confirmed />
       <Recovered />
-      <Dead />
+      <Dead :selected="selected"/>
     </div>
     <div class="dropdown animate__animated ">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
@@ -49,6 +49,8 @@ export default {
     return {
       countries: '',
       selected: null,
+
+      allData: '',
     }
   },
 
