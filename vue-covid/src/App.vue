@@ -11,6 +11,18 @@
       <p>{{selected}}</p>
     </div>
 
+    <div class="dropdown-responsive animate__animated ">
+      <b-form-select v-model="selected" v-on:change="changeCountry()">
+            <template #first>
+                <b-form-select-option :value="null" disabled>
+                    -- Please select a country --
+                </b-form-select-option>
+            </template>
+
+            <b-form-select-option v-for="(country, i) in countries" :key="i" :value="country.name">{{country.name}}</b-form-select-option>
+        </b-form-select>
+    </div>
+
     <div class="cards animate__animated ">
       <Confirmed :selected="selected" :key="confirmedKey+'B'"/>
       <Recovered :selected="selected" :key="recoveredKey"/>
@@ -113,6 +125,13 @@ export default {
     max-width: 500px;
   }
 
+  .dropdown-responsive {
+    display: none;
+    margin: auto;
+    margin-top: 50px;
+    max-width: 500px;
+  }
+
   .selected-country {
     margin-top: 25px;
   }
@@ -127,4 +146,24 @@ export default {
     margin: auto;
   }
 
+  @media (max-width: 940px) {
+    .cards {
+      grid-template-columns: 1fr;
+      row-gap: 40px;
+    }
+
+    .dropdown {
+      display: none;
+    }
+
+    .dropdown-responsive {
+      display: block;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .dropdown-responsive {
+      max-width: 300px;
+    }
+  }
 </style>
