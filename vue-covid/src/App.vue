@@ -12,9 +12,9 @@
     </div>
 
     <div class="cards animate__animated ">
-      <Confirmed />
-      <Recovered />
-      <Dead :selected="selected" :key="deadKey"/>
+      <Confirmed :selected="selected" :key="confirmedKey+'B'"/>
+      <Recovered :selected="selected" :key="recoveredKey"/>
+      <Dead :selected="selected" :key="deadKey+'A'"/>
     </div>
     <div class="dropdown animate__animated ">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
@@ -53,6 +53,8 @@ export default {
       allData: '',
 
       deadKey: 0,
+      recoveredKey: 0,
+      confirmedKey: 0,
     }
   },
 
@@ -75,6 +77,8 @@ export default {
         this.selected = event.target.value;
 
         this.deadKey++;
+        this.recoveredKey++;
+        this.confirmedKey++;
     },
   }
 }

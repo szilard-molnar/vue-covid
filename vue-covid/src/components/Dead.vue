@@ -136,7 +136,7 @@ export default {
 
     #covid-dead .dead-covid-card {
         position: relative;
-        max-width: 275px;
+        width: 275px;
         height: 300px;
         background-color: white;
         text-align: center;

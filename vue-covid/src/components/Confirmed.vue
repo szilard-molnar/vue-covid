@@ -5,7 +5,7 @@
             <div class="covid-card-header">
                 <p>Confirmed</p>
             </div>
-            <div class="covid-card-body">
+            <div class="covid-card-body" v-if="selected == null">
                 <p>Number of Confirmed:<br>
                     <strong>
                         <ICountUp
@@ -16,6 +16,19 @@
                     </strong>
                 </p>
                 <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
+            </div>
+
+            <div class="covid-card-body" v-if="selected != null">
+                <p>Number of Confirmed:<br>
+                    <strong>
+                        <ICountUp
+                            :delay="delay"
+                            :endVal="this.countryCovid"
+                            :options="options"
+                        />
+                    </strong>
+                </p>
+                <p>As of<br><strong>{{countryDate | moment("dddd, MMMM Do YYYY")}}</strong></p>
             </div>
         </div>
     </div>
@@ -33,7 +46,9 @@ export default {
     data() {
         return{
             covid: 0,
+            countryCovid: 0,
             date: '',
+            countryDate: '',
 
             delay: 0,
             options: {
@@ -78,14 +93,30 @@ export default {
     },
 
     mounted() {
-        axios
+        if(this.selected == null)
+        {
+            axios
             .get('https://covid19.mathdro.id/api')
             .then(response => {
-                this.covid = response.data.confirmed.value;
+                this.covid = response.data.deaths.value;
                 this.date = response.data.lastUpdate;
-            })
-            .catch(error => console.log(error));
+            });
+        }
+
+        else if(this.selected != null)
+        {
+            axios
+            .get('https://covid19.mathdro.id/api/countries/' + this.selected)
+            .then((response => {
+                this.countryCovid = response.data.deaths.value
+                this.countryDate = response.data.lastUpdate
+            }));
+        }
     },
+
+    props: [
+        'selected',
+    ]
 }
 </script>
 
@@ -105,7 +136,7 @@ export default {
 
     #covid-confirmed .covid-card {
         position: relative;
-        max-width: 275px;
+        width: 275px;
         height: 300px;
         background-color: white;
         text-align: center;
