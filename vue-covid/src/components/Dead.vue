@@ -28,7 +28,7 @@
                             />
                     </strong>
                 </p>
-                <p>As of<br><strong>{{date | moment("dddd, MMMM Do YYYY")}}</strong></p>
+                <p>As of<br><strong>{{countryDate | moment("dddd, MMMM Do YYYY")}}</strong></p>
             </div>
 
         </div>
@@ -49,6 +49,7 @@ export default {
             covid: 0,
             countryCovid: 0,
             date: '',
+            countryDate: '',
             showThis: true,
 
             delay: 0,
@@ -102,12 +103,13 @@ export default {
             });
         }
 
-        else 
+        else if(this.selected != null)
         {
             axios
-            .get('https://covid19.mathdro.id/api/countries/Hungary')
+            .get('https://covid19.mathdro.id/api/countries/' + this.selected)
             .then((response => {
                 this.countryCovid = response.data.deaths.value
+                this.countryDate = response.data.lastUpdate
             }));
         }
     },

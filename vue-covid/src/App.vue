@@ -14,7 +14,7 @@
     <div class="cards animate__animated ">
       <Confirmed />
       <Recovered />
-      <Dead :selected="selected"/>
+      <Dead :selected="selected" :key="deadKey"/>
     </div>
     <div class="dropdown animate__animated ">
       <b-form-select v-model="selected" v-on:change="changeCountry()">
@@ -51,6 +51,8 @@ export default {
       selected: null,
 
       allData: '',
+
+      deadKey: 0,
     }
   },
 
@@ -71,6 +73,8 @@ export default {
 
     changeCountry() {
         this.selected = event.target.value;
+
+        this.deadKey++;
     },
   }
 }
